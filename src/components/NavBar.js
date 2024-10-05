@@ -1,8 +1,9 @@
 import "../assets/css/style.css";
+import Logo from "../assets/images/8KLogoStageFright.jpeg"
 
 export default function NavBar() {
   return (
-    <div className="navbar bg-base-100 z-index">
+    <div className="navbar bg-yellow-950 z-index">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -40,7 +41,7 @@ export default function NavBar() {
           </ul>
         </div>
         <a href="/">
-          {/* <img src={Logo} className="h-10" /> */}
+          <img src={Logo} className="h-20" />
         </a>
       </div>
       <div className="navbar-center hidden lg:flex">

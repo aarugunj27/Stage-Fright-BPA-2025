@@ -1,74 +1,62 @@
-import "../assets/css/style.css";
-import Logo from "../assets/images/8KLogoStageFright.jpeg"
+import { Moon, Sun } from "lucide-react";
+import { useEffect, useState } from "react";
+import Logo from "../assets/images/logo.png";
 
-export default function NavBar() {
+function NavBar() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    const savedMode = localStorage.getItem("darkMode") === "true";
+    setIsDarkMode(savedMode);
+    if (savedMode) {
+      document.documentElement.classList.add("dark");
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("darkMode", "true");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("darkMode", "false");
+    }
+  }, [isDarkMode]);
+
   return (
-    <div className="navbar bg-yellow-950 z-index">
-      <div className="navbar-start">
-        <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />
-            </svg>
-          </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-          >
-            <li>
-              <a href="/">Home</a>
-            </li>
-            <li>
-              <a href="/about">About</a>
-            </li>
-            <li>
-              <a href="/tours">Tours</a>
-            </li>
-            <li>
-              <a href="/contact">Contact</a>
-            </li>
-          </ul>
-        </div>
-        <a href="/">
-          <img src={Logo} className="h-20" />
+    <header className="border-b border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900">
+      <div className="flex h-16 items-center px-4 md:px-6">
+        <a href="/" className="mr-6 flex items-center space-x-2 select-none">
+          <img src={Logo} alt="Logo" className="h-10 w-10" />
+          <span className="self-center text-2xl font-semibold whitespace-nowrap text-zinc-900 dark:text-zinc-100">
+            Stage Fright
+          </span>
         </a>
+        <nav className="ml-auto flex items-center space-x-4">
+          {["Home", "About", "Tours", "Music", "Merch", "Contact"].map(
+            (item) => (
+              <a
+                key={item}
+                href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+                className="relative text-sm font-medium text-zinc-600 hover:text-sky-600 dark:text-zinc-400 dark:hover:text-sky-400 transition-colors duration-200"
+              >
+                {item}
+                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-sky-600 dark:bg-sky-400 transform scale-x-0 transition-transform duration-300 origin-left group-hover:scale-x-100"></span>
+              </a>
+            )
+          )}
+          <button
+            onClick={() => setIsDarkMode(!isDarkMode)}
+            className="inline-flex items-center justify-center rounded-md text-sm font-medium text-zinc-600 hover:text-sky-600 dark:text-zinc-400 dark:hover:text-sky-400 transition-colors duration-200"
+          >
+            <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+            <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+            <span className="sr-only">Toggle theme</span>
+          </button>
+        </nav>
       </div>
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          <li>
-            <a href="/" className="nav-link">
-              Home
-            </a>
-          </li>
-          <li>
-            <a href="/about" className="nav-link">
-              About
-            </a>
-          </li>
-          <li>
-            <a href="/tours" className="nav-link">
-              Tours
-            </a>
-          </li>
-          <li>
-            <a href="/contact" className="nav-link">
-              Contact
-            </a>
-          </li>
-        </ul>
-      </div>
-      <div className="navbar-end"></div>
-    </div>
+    </header>
   );
 }
+
+export default NavBar;

@@ -1,14 +1,14 @@
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 
-function Contact() {
+function Merch() {
   return (
     <>
       <NavBar />
-      Contact
+      Merch
       <Footer />
     </>
   );
 }
 
-export default Contact;
+export default Merch;

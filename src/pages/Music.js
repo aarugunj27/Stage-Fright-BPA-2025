@@ -3,8 +3,12 @@ import { motion } from "framer-motion";
 import { Play, Pause, SkipBack, SkipForward, Volume2 } from "lucide-react";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
+import SpotifyIcon from "../assets/images/spotify-icon.svg";
+import AppleMusicIcon from "../assets/images/apple-music-icon.svg";
+import YoutubeMusicIcon from "../assets/images/youtube-music-icon.svg";
+import AmazonMusicIcon from "../assets/images/amazon-music-icon.svg";
 
-function Music() {
+export default function Music() {
   const [currentTrack, setCurrentTrack] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -42,10 +46,10 @@ function Music() {
   ];
 
   const streamingPlatforms = [
-    { name: "Spotify", url: "#", icon: "spotify.svg" },
-    { name: "Apple Music", url: "#", icon: "apple-music.svg" },
-    { name: "YouTube Music", url: "#", icon: "youtube-music.svg" },
-    { name: "Amazon Music", url: "#", icon: "amazon-music.svg" },
+    { name: "Spotify", url: "/spotify", icon: SpotifyIcon },
+    { name: "Apple Music", url: "/apple", icon: AppleMusicIcon },
+    { name: "YouTube Music", url: "/youtube", icon: YoutubeMusicIcon },
+    { name: "Amazon Music", url: "/amazon", icon: AmazonMusicIcon },
   ];
 
   return (
@@ -193,7 +197,7 @@ function Music() {
                 >
                   <img
                     src={platform.icon}
-                    alt={platform.name}
+                    alt={`${platform.name} icon`}
                     className="h-8 w-8 mr-3"
                   />
                   <span className="text-lg font-medium">{platform.name}</span>
@@ -207,5 +211,3 @@ function Music() {
     </>
   );
 }
-
-export default Music;

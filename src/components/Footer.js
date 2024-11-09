@@ -1,35 +1,31 @@
 import React from "react";
+import Logo from "../assets/images/logo.png";
 
 function Footer() {
+  const linkSections = [
+    {
+      title: "Navigation",
+      links: ["Home", "About", "Tours", "Music"],
+    },
+    {
+      title: "Resources",
+      links: ["Merch", "Contact", "FAQ", "Privacy Policy"],
+    },
+  ];
   return (
-    <footer className="bg-zinc-900 text-zinc-100 py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
-            <h3 className="text-2xl font-bold mb-4">Stage Fright</h3>
-            <p className="text-zinc-400">
+    <footer className="border-t border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="md:col-span-2">
+            <div className="flex items-center space-x-2 mb-4">
+              <img src={Logo} alt="Logo" className="h-10 w-10" />
+              <h3 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">
+                Stage Fright
+              </h3>
+            </div>
+            <p className="text-sm mb-4">
               Electrifying performances, unforgettable experiences.
             </p>
-          </div>
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-            <ul className="space-y-2">
-              {["Home", "About", "Tours", "Music", "Merch", "Contact"].map(
-                (item) => (
-                  <li key={item}>
-                    <a
-                      href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                      className="text-zinc-400 hover:text-sky-400 transition duration-300"
-                    >
-                      {item}
-                    </a>
-                  </li>
-                )
-              )}
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Connect With Us</h4>
             <div className="flex space-x-4">
               {["facebook", "twitter", "instagram", "youtube"].map((social) => (
                 <a
@@ -37,7 +33,7 @@ function Footer() {
                   href={`https://${social}.com/stagefright`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-zinc-400 hover:text-sky-400 transition duration-300"
+                  className="text-zinc-400 hover:text-sky-600 dark:hover:text-sky-400 transition-colors duration-200"
                 >
                   <span className="sr-only">{social}</span>
                   <svg
@@ -56,6 +52,29 @@ function Footer() {
               ))}
             </div>
           </div>
+          {linkSections.map((section, index) => (
+            <div key={index}>
+              <h4 className="text-lg font-semibold mb-4 text-zinc-900 dark:text-zinc-100">
+                {section.title}
+              </h4>
+              <ul className="space-y-2">
+                {section.links.map((item) => (
+                  <li key={item}>
+                    <a
+                      href={
+                        item === "Home"
+                          ? "/"
+                          : `/${item.toLowerCase().replace(" ", "-")}`
+                      }
+                      className="text-sm font-medium hover:text-sky-600 dark:hover:text-sky-400 transition-colors duration-200"
+                    >
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
         <div className="mt-8 pt-8 border-t border-zinc-800 text-center">
           <p className="text-zinc-400">

@@ -5,7 +5,7 @@ import Tours from "./pages/tours.js";
 import Merch from "./pages/merch.js";
 import Contact from "./pages/contact.js";
 import PageNotFound from "./pages/404.js";
-import Music from "./pages/Music.js";
+import Music from "./pages/music.js";
 
 function App() {
   return (

@@ -5,6 +5,7 @@ import Tours from "./pages/tours.js";
 import Merch from "./pages/merch.js";
 import Contact from "./pages/contact.js";
 import PageNotFound from "./pages/404.js";
+import Music from "./pages/music.js";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route exact path="/tours" element={<Tours />} />
         <Route exact path="/merch" element={<Merch />} />
         <Route exact path="/contact" element={<Contact />} />
+        <Route exact path="/music" element={<Music />} />
         <Route exact path="*" element={<PageNotFound />} />
       </Routes>
     </>

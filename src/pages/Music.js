@@ -26,7 +26,7 @@ export default function Music() {
     {
       title: "Sonic Boom",
       year: 2022,
-      cover: "/placeholder.svg?height=300&width=300",
+      cover: "//placeholder.svg?height=300&width=300",
       tracks: [
         { title: "Thunder Road", duration: "4:02" },
         { title: "Echoes of Yesterday", duration: "3:56" },

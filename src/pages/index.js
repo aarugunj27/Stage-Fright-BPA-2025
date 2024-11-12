@@ -145,10 +145,13 @@ function LatestRelease() {
             <p className="text-zinc-600 dark:text-zinc-400 mb-4">
               Our latest album featuring 12 electrifying tracks
             </p>
-            <button className="bg-sky-600 text-white hover:bg-sky-700 dark:bg-sky-500 dark:hover:bg-sky-600 px-6 py-2 rounded-full font-semibold transition duration-300 ease-in-out flex items-center justify-center gap-2">
+            <a
+              href="/music"
+              className="bg-sky-600 text-white hover:bg-sky-700 dark:bg-sky-500 dark:hover:bg-sky-600 px-6 py-2 rounded-full font-semibold transition duration-300 ease-in-out flex items-center justify-center gap-2"
+            >
               <Play size={20} />
               Listen Now
-            </button>
+            </a>
           </div>
         </div>
       </div>

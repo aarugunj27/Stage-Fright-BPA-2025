@@ -1,29 +1,44 @@
 import React from "react";
+import { motion } from "framer-motion";
+import NotFoundImage from "../assets/images/404.png";
 
 function PageNotFound() {
   return (
-    <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
-      <div className="text-center">
-        <p className="text-base font-semibold text-indigo-600">404</p>
-        <h1 className="mt-4 text-balance text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl">
-          Page not found
-        </h1>
-        <p className="mt-6 text-pretty text-lg font-medium text-gray-500 sm:text-xl/8">
-          Sorry, we couldn’t find the page you’re looking for.
-        </p>
-        <div className="mt-10 flex items-center justify-center gap-x-6">
-          <a
-            href="/"
-            className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          >
-            Go back home
-          </a>
-          <a href="/contact" className="text-sm font-semibold text-gray-900">
-            Contact support <span aria-hidden="true">&rarr;</span>
-          </a>
-        </div>
-      </div>
-    </main>
+    <div className="flex flex-col items-center justify-center h-screen bg-zinc-800 text-zinc-100 px-4">
+      <img
+        src={NotFoundImage}
+        alt="404 Background"
+        className="absolute inset-0 w-full h-full object-cover opacity-20 dark:opacity-30"
+      />
+      <motion.h1
+        className="text-9xl font-bold mb-4 relative"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, ease: "easeInOut" }}
+      >
+        <span className="text-red-600 bg-clip-text bg-center bg-cover">
+          Oops!
+        </span>
+      </motion.h1>
+
+      {/* Error Message */}
+      <p className="text-2xl mb-2 font-semibold">404 - PAGE NOT FOUND</p>
+      <p className="dark:text-zinc-400 mb-8 text-center max-w-md">
+        The page you are looking for might have been removed, had its name
+        changed, or is temporarily unavailable.
+      </p>
+
+      {/* Button with Hover and Scale Effect */}
+      <motion.a
+        href="/"
+        className="px-6 py-3 rounded-lg text-lg font-semibold bg-red-700 hover:bg-red-600 text-zinc-100 shadow-lg z-10"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+        transition={{ type: "spring", stiffness: 300 }}
+      >
+        Go to Homepage
+      </motion.a>
+    </div>
   );
 }
 

@@ -33,7 +33,7 @@ function Footer() {
                   href={`https://${social}.com/stagefright`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-zinc-400 hover:text-sky-600 dark:hover:text-sky-400 transition-colors duration-200"
+                  className="text-zinc-400 hover:text-red-600 dark:hover:text-red-400 transition-colors duration-200"
                 >
                   <span className="sr-only">{social}</span>
                   <svg
@@ -66,7 +66,7 @@ function Footer() {
                           ? "/"
                           : `/${item.toLowerCase().replace(" ", "-")}`
                       }
-                      className="text-sm font-medium hover:text-sky-600 dark:hover:text-sky-400 transition-colors duration-200"
+                      className="text-sm font-medium hover:text-red-600 dark:hover:text-red-400 transition-colors duration-200"
                     >
                       {item}
                     </a>

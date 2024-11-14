@@ -7,6 +7,9 @@ import NavBar from "../components/NavBar";
 import Logo from "../assets/images/logo.png";
 import Footer from "../components/Footer";
 import Cover from "../assets/images/neonnights.jpg";
+import TourT from "../assets/images/tour.jpg";
+import Album from "../assets/images/album.jpg";
+import Poster from "../assets/images/poster.jpg";
 
 export default function Home() {
   return (
@@ -58,7 +61,7 @@ function HeroSection() {
               <strong>
                 Igniting the night with
                 <br />
-                <span className="text-sky-600 dark:text-sky-400">
+                <span className="text-red-600 dark:text-red-400">
                   <span ref={el}></span>
                 </span>
               </strong>
@@ -85,7 +88,7 @@ function HeroSection() {
             >
               <a
                 href="/tours"
-                className="bg-sky-600 text-white hover:bg-sky-700 dark:bg-sky-500 dark:hover:bg-sky-600 px-8 py-3 rounded-full font-semibold text-lg transition duration-300 ease-in-out transform hover:scale-105 text-center"
+                className="bg-red-600 text-white hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600 px-8 py-3 rounded-full font-semibold text-lg transition duration-300 ease-in-out transform hover:scale-105 text-center"
               >
                 View Tour Dates
               </a>
@@ -123,7 +126,7 @@ function HeroSection() {
 function LatestRelease() {
   return (
     <section className="relative bg-white dark:bg-zinc-700 py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
         <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mb-8 text-center">
           Latest Release
         </h2>
@@ -131,7 +134,7 @@ function LatestRelease() {
           <img
             src={Cover}
             alt="Album Cover"
-            className="w-64 h-64 object-cover rounded-lg shadow-lg"
+            className="w-64 h-64 object-cover rounded-lg shadow-lg hover:scale-105 duration-300 ease-in-out"
           />
           <div className="text-center md:text-left">
             <h3 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-100 mb-2">
@@ -142,7 +145,7 @@ function LatestRelease() {
             </p>
             <a
               href="/music"
-              className="bg-sky-600 text-white hover:bg-sky-700 dark:bg-sky-500 dark:hover:bg-sky-600 px-6 py-2 rounded-full font-semibold transition duration-300 ease-in-out flex items-center justify-center gap-2"
+              className="bg-red-600 text-white hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600 px-6 py-2 rounded-full font-semibold transition duration-300 ease-in-out flex items-center justify-center gap-2"
             >
               <Play size={20} />
               Listen Now
@@ -183,10 +186,10 @@ function UpcomingTours() {
           {tours.map((tour, index) => (
             <div
               key={index}
-              className="bg-white dark:bg-zinc-800 rounded-lg shadow-md p-6"
+              className="bg-white dark:bg-zinc-800 rounded-lg shadow-md p-6 hover:scale-105 duration-300 ease-in-out"
             >
               <div className="flex items-center gap-4 mb-4">
-                <Calendar className="text-sky-600 dark:text-sky-400" />
+                <Calendar className="text-red-600 dark:text-red-400" />
                 <span className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
                   {tour.date}
                 </span>
@@ -198,7 +201,7 @@ function UpcomingTours() {
                 <span className="text-sm text-zinc-500 dark:text-zinc-500">
                   {tour.ticketsLeft} tickets left
                 </span>
-                <button className="bg-sky-600 text-white hover:bg-sky-700 dark:bg-sky-500 dark:hover:bg-sky-600 px-4 py-2 rounded-full text-sm font-semibold transition duration-300 ease-in-out">
+                <button className="bg-red-600 text-white hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600 px-4 py-2 rounded-full text-sm font-semibold transition duration-300 ease-in-out">
                   Book Now
                 </button>
               </div>
@@ -211,24 +214,6 @@ function UpcomingTours() {
 }
 
 function MerchShowcase() {
-  const merchItems = [
-    {
-      name: "Tour T-Shirt",
-      price: "$25",
-      image: "/placeholder.svg?height=200&width=200",
-    },
-    {
-      name: "Signed Poster",
-      price: "$40",
-      image: "/placeholder.svg?height=200&width=200",
-    },
-    {
-      name: "Album Vinyl",
-      price: "$30",
-      image: "/placeholder.svg?height=200&width=200",
-    },
-  ];
-
   return (
     <section className="relative bg-white dark:bg-zinc-700 py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -236,32 +221,59 @@ function MerchShowcase() {
           Merch Store
         </h2>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {merchItems.map((item, index) => (
-            <div
-              key={index}
-              className="bg-white dark:bg-zinc-700 rounded-lg shadow-md overflow-hidden"
-            >
-              <img
-                src={item.image}
-                alt={item.name}
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-4">
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-2">
-                  {item.name}
-                </h3>
-                <div className="flex justify-between items-center">
-                  <span className="text-zinc-600 dark:text-zinc-400">
-                    {item.price}
-                  </span>
-                  <button className="bg-sky-600 text-white hover:bg-sky-700 dark:bg-sky-500 dark:hover:bg-sky-600 px-4 py-2 rounded-full text-sm font-semibold transition duration-300 ease-in-out flex items-center gap-2">
-                    <ShoppingBag size={16} />
-                    Add to Cart
-                  </button>
-                </div>
+          <div className="bg-white dark:bg-zinc-800 rounded-lg shadow-md overflow-hidden hover:scale-105 duration-300 ease-in-out">
+            <img
+              src={TourT}
+              className="w-full h-48 object-cover"
+              alt="T-Shirt"
+            />
+            <div className="p-4">
+              <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-2">
+                Tour T-Shirt
+              </h3>
+              <div className="flex justify-between items-center">
+                <span className="text-zinc-600 dark:text-zinc-400">$25</span>
+                <button className="bg-red-600 text-white hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600 px-4 py-2 rounded-full text-sm font-semibold transition duration-300 ease-in-out flex items-center gap-2">
+                  <ShoppingBag size={16} />
+                  Add to Cart
+                </button>
               </div>
             </div>
-          ))}
+          </div>
+          <div className="bg-white dark:bg-zinc-800 rounded-lg shadow-md overflow-hidden hover:scale-105 duration-300 ease-in-out">
+            <img src={Album} className="w-full h-48 object-cover" alt="Vinyl" />
+            <div className="p-4">
+              <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-2">
+                Signed Vinyl
+              </h3>
+              <div className="flex justify-between items-center">
+                <span className="text-zinc-600 dark:text-zinc-400">$30</span>
+                <button className="bg-red-600 text-white hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600 px-4 py-2 rounded-full text-sm font-semibold transition duration-300 ease-in-out flex items-center gap-2">
+                  <ShoppingBag size={16} />
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className="bg-white dark:bg-zinc-800 rounded-lg shadow-md overflow-hidden hover:scale-105 duration-300 ease-in-out">
+            <img
+              src={Poster}
+              className="w-full h-48 object-cover"
+              alt="Poster"
+            />
+            <div className="p-4">
+              <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-2">
+                Signed Poster
+              </h3>
+              <div className="flex justify-between items-center">
+                <span className="text-zinc-600 dark:text-zinc-400">$40</span>
+                <button className="bg-red-600 text-white hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600 px-4 py-2 rounded-full text-sm font-semibold transition duration-300 ease-in-out flex items-center gap-2">
+                  <ShoppingBag size={16} />
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

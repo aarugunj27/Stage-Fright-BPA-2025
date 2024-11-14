@@ -82,7 +82,7 @@ export default function Music() {
                         key={index}
                         className={`flex items-center justify-between p-2 rounded ${
                           currentTrack === index
-                            ? "bg-sky-100 dark:bg-sky-900"
+                            ? "bg-red-100 dark:bg-red-900"
                             : "hover:bg-zinc-100 dark:hover:bg-zinc-700"
                         }`}
                       >
@@ -92,7 +92,7 @@ export default function Music() {
                               setCurrentTrack(index);
                               setIsPlaying(true);
                             }}
-                            className="text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300"
+                            className="text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300"
                           >
                             {currentTrack === index && isPlaying ? (
                               <Pause size={20} />
@@ -113,16 +113,16 @@ export default function Music() {
               <div className="mt-8">
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-4">
-                    <button className="text-zinc-600 dark:text-zinc-400 hover:text-sky-600 dark:hover:text-sky-400">
+                    <button className="text-zinc-600 dark:text-zinc-400 hover:text-red-600 dark:hover:text-red-400">
                       <SkipBack size={24} />
                     </button>
                     <button
                       onClick={() => setIsPlaying(!isPlaying)}
-                      className="text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300"
+                      className="text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300"
                     >
                       {isPlaying ? <Pause size={32} /> : <Play size={32} />}
                     </button>
-                    <button className="text-zinc-600 dark:text-zinc-400 hover:text-sky-600 dark:hover:text-sky-400">
+                    <button className="text-zinc-600 dark:text-zinc-400 hover:text-red-600 dark:hover:text-red-400">
                       <SkipForward size={24} />
                     </button>
                   </div>
@@ -132,12 +132,12 @@ export default function Music() {
                       className="text-zinc-600 dark:text-zinc-400"
                     />
                     <div className="w-24 h-2 bg-zinc-200 dark:bg-zinc-700 rounded-full">
-                      <div className="w-3/4 h-full bg-sky-600 dark:bg-sky-400 rounded-full"></div>
+                      <div className="w-3/4 h-full bg-red-600 dark:bg-red-400 rounded-full"></div>
                     </div>
                   </div>
                 </div>
                 <div className="h-1 bg-zinc-200 dark:bg-zinc-700 rounded-full">
-                  <div className="w-1/3 h-full bg-sky-600 dark:bg-sky-400 rounded-full"></div>
+                  <div className="w-1/3 h-full bg-red-600 dark:bg-red-400 rounded-full"></div>
                 </div>
               </div>
             </div>

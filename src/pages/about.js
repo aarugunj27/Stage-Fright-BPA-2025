@@ -18,7 +18,7 @@ function About() {
           >
             <h1 className="text-4xl sm:text-5xl font-bold text-zinc-900 dark:text-zinc-100 mb-6">
               Meet{" "}
-              <span className="text-sky-600 dark:text-sky-400">
+              <span className="text-red-600 dark:text-red-400">
                 Stage Fright
               </span>
             </h1>
@@ -46,7 +46,7 @@ function About() {
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   className="text-center"
                 >
-                  <stat.icon className="h-8 w-8 mx-auto mb-4 text-sky-600 dark:text-sky-400" />
+                  <stat.icon className="h-8 w-8 mx-auto mb-4 text-red-600 dark:text-red-400" />
                   <p className="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mb-2">
                     {stat.value}
                   </p>
@@ -119,7 +119,7 @@ function About() {
                     <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-100 mb-2">
                       {member.name}
                     </h3>
-                    <p className="text-sky-600 dark:text-sky-400 mb-4">
+                    <p className="text-red-600 dark:text-red-400 mb-4">
                       {member.role}
                     </p>
                     <p className="text-zinc-700 dark:text-zinc-300 text-sm">
@@ -170,7 +170,7 @@ function About() {
             </p>
             <a
               href="/tours"
-              className="inline-block bg-sky-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-sky-700 transition-colors duration-200"
+              className="inline-block bg-red-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-red-700 transition-colors duration-200"
             >
               View Tour Dates
             </a>

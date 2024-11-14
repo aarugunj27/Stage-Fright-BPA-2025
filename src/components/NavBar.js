@@ -1,6 +1,7 @@
 import { Moon, Sun, Menu } from "lucide-react";
 import { useEffect, useState } from "react";
 import Logo from "../assets/images/logo.png";
+import { ShoppingCart } from "lucide-react";
 
 function NavBar() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -56,16 +57,23 @@ function NavBar() {
                 <a
                   key={item}
                   href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                  className="relative text-sm font-medium text-zinc-600 hover:text-sky-600 dark:text-zinc-400 dark:hover:text-sky-400 transition-colors duration-200"
+                  className="relative text-sm font-medium text-zinc-600 hover:text-red-600 dark:text-zinc-400 dark:hover:text-red-400 transition-colors duration-200"
                 >
                   {item}
-                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-sky-600 dark:bg-sky-400 transform scale-x-0 transition-transform duration-300 origin-left hover:scale-x-100"></span>
+                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-red-600 dark:bg-red-400 transform scale-x-0 transition-transform duration-300 origin-left hover:scale-x-100"></span>
                 </a>
               ))}
             </nav>
+            <a
+              href="/cart"
+              className="inline-flex items-center justify-center rounded-md text-sm font-medium text-zinc-600 hover:text-red-600 dark:text-zinc-400 dark:hover:text-red-400 transition-colors duration-200"
+            >
+              <ShoppingCart className="h-5 w-5 rotate-0 scale-100" />
+              <span className="sr-only">Shopping Cart</span>
+            </a>
             <button
               onClick={toggleDarkMode}
-              className="inline-flex items-center justify-center rounded-md text-sm font-medium text-zinc-600 hover:text-sky-600 dark:text-zinc-400 dark:hover:text-sky-400 transition-colors duration-200"
+              className="inline-flex items-center justify-center rounded-md text-sm font-medium text-zinc-600 hover:text-red-600 dark:text-zinc-400 dark:hover:text-red-400 transition-colors duration-200"
             >
               <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
               <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
@@ -73,7 +81,7 @@ function NavBar() {
             </button>
             <button
               onClick={toggleMenu}
-              className="p-2 rounded-md text-zinc-600 hover:text-sky-600 dark:text-zinc-400 dark:hover:text-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-600 dark:focus:ring-sky-400 md:hidden"
+              className="p-2 rounded-md text-zinc-600 hover:text-red-600 dark:text-zinc-400 dark:hover:text-red-400 focus:outline-none focus:ring-2 focus:ring-red-600 dark:focus:ring-red-400 md:hidden"
               aria-label="Toggle menu"
             >
               <Menu className="h-6 w-6" />
@@ -92,7 +100,7 @@ function NavBar() {
             <a
               key={item}
               href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-              className="block py-2 text-base font-medium text-zinc-600 hover:text-sky-600 dark:text-zinc-400 dark:hover:text-sky-400 transition-colors duration-200"
+              className="block py-2 text-base font-medium text-zinc-600 hover:text-red-600 dark:text-zinc-400 dark:hover:text-red-400 transition-colors duration-200"
               onClick={() => setIsMenuOpen(false)}
             >
               {item}

@@ -6,24 +6,19 @@ import Typed from "typed.js";
 import NavBar from "../components/NavBar";
 import Logo from "../assets/images/logo.png";
 import Footer from "../components/Footer";
+import Cover from "../assets/images/neonnights.jpg";
 
 export default function Home() {
   return (
     <>
       <NavBar />
       <HeroSection />
-      <div className="relative">
-        <CurvyDivider fill="fill-zinc-100 dark:fill-zinc-800" height={150} />
-        <LatestRelease />
-      </div>
-      <div className="relative">
-        <CurvyDivider fill="fill-white dark:fill-zinc-700" height={100} />
-        <UpcomingTours />
-      </div>
-      <div className="relative">
-        <WavyDivider fill="fill-zinc-100 dark:fill-zinc-800" height={150} />
-        <MerchShowcase />
-      </div>
+      <CurvyDivider fill="fill-zinc-100 dark:fill-zinc-800" height={150} />
+      <LatestRelease />
+      <CurvyDivider fill="fill-white dark:fill-zinc-700" height={100} />
+      <UpcomingTours />
+      <WavyDivider fill="fill-zinc-100 dark:fill-zinc-800" height={75} />
+      <MerchShowcase />
       <Footer />
     </>
   );
@@ -134,7 +129,7 @@ function LatestRelease() {
         </h2>
         <div className="flex flex-col md:flex-row items-center justify-center gap-8">
           <img
-            src="/placeholder.svg?height=300&width=300"
+            src={Cover}
             alt="Album Cover"
             className="w-64 h-64 object-cover rounded-lg shadow-lg"
           />

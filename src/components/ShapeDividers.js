@@ -1,14 +1,8 @@
 import React from "react";
 
-export const CurvyDivider = ({
-  fill = "fill-zinc-100",
-  flip = false,
-  height = 100,
-}) => (
+export const Waves = ({ fill = "fill-zinc-100", height = 100 }) => (
   <div
-    className={`absolute left-0 w-full overflow-hidden leading-none z-999 ${
-      flip ? "rotate-180" : ""
-    }`}
+    className="absolute left-0 w-full overflow-hidden leading-none z-999"
     style={{ height: `${height}px`, zIndex: 9999 }}
   >
     <svg
@@ -27,7 +21,7 @@ export const CurvyDivider = ({
   </div>
 );
 
-export const WavyDivider = ({
+export const WavesOpacity = ({
   fill = "fill-zinc-100",
   flip = false,
   height = 100,
@@ -62,6 +56,94 @@ export const WavyDivider = ({
         className={fill}
         style={{ zIndex: 9999 }}
       ></path>
+    </svg>
+  </div>
+);
+
+export const WavesLayerd = ({
+  fill = "fill-zinc-100",
+  flip = false,
+  height = 100,
+}) => (
+  <div
+    className={`absolute left-0 w-full leading-none z-999 ${
+      flip ? "[transform:rotateX(180deg)]" : ""
+    }`}
+    style={{ height: `${height}px`, zIndex: 2147483647 }}
+  >
+    <svg
+      className="relative block w-full h-full z-999"
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1000 100"
+      preserveAspectRatio="none"
+    >
+      <path d="M0 0h1000v4H0z" className={fill} style={{ zIndex: 9999 }}></path>
+      <path
+        d="M0 0h1000v80.8S550 100 500 100 0 80.8 0 80.8V0Z"
+        opacity=".2"
+        className={fill}
+        style={{ zIndex: 9999 }}
+      ></path>
+      <path
+        d="M0 0h1000v61.6S600 100 500 100 0 61.6 0 61.6V0Z"
+        opacity=".3"
+        className={fill}
+        style={{ zIndex: 9999 }}
+      ></path>
+      <path
+        d="M0 0h1000v42.4S650 100 500 100 0 42.4 0 42.4V0Z"
+        opacity=".4"
+        className={fill}
+        style={{ zIndex: 9999 }}
+      ></path>
+      <path
+        d="M0 0h1000v23.2S700 100 500 100 0 23.2 0 23.2V0Z"
+        opacity=".5"
+        className={fill}
+        style={{ zIndex: 9999 }}
+      ></path>
+      <path
+        d="M0 0v4s250 96 500 96 500-96 500-96V0H0Z"
+        className={fill}
+        style={{ zIndex: 9999 }}
+      ></path>
+    </svg>
+  </div>
+);
+
+export const Arc = ({ fill = "fill-zinc-100", height = 100 }) => (
+  <div
+    className="absolute left-0 w-full leading-none rotate-180 z-999"
+    style={{ height: `${height}px` }}
+  >
+    <svg
+      className="relative block w-[calc(300%+1.3px)] h-full"
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1200 120"
+      preserveAspectRatio="none"
+    >
+      <path
+        d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
+        className={fill}
+      ></path>
+    </svg>
+  </div>
+);
+
+export const Curve = ({ fill = "fill-black", height = 100 }) => (
+  <div
+    className="absolute left-0 w-full leading-none z-999"
+    style={{ height: `${height}px` }}
+  >
+    <svg
+      className="relative block w-full h-full"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1000 100"
+      preserveAspectRatio="none"
+    >
+      <path d="M0 0v4s250 96 500 96 500-96 500-96V0H0Z" className={fill}></path>
     </svg>
   </div>
 );

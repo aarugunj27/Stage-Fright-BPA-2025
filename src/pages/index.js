@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Play, Calendar, ShoppingBag } from "lucide-react";
-import { WavyDivider, CurvyDivider } from "../components/ShapeDividers";
+import { Waves, WavesLayerd } from "../components/ShapeDividers";
 import Typed from "typed.js";
 import NavBar from "../components/NavBar";
 import Logo from "../assets/images/logo.png";
@@ -16,11 +16,11 @@ export default function Home() {
     <>
       <NavBar />
       <HeroSection />
-      <CurvyDivider fill="fill-zinc-100 dark:fill-zinc-800" height={150} />
+      <Waves fill="fill-zinc-100 dark:fill-zinc-900" height={150} />
       <LatestRelease />
-      <CurvyDivider fill="fill-white dark:fill-zinc-700" height={100} />
+      <Waves fill="fill-zinc-200 dark:fill-zinc-800" height={100} />
       <UpcomingTours />
-      <WavyDivider fill="fill-zinc-100 dark:fill-zinc-800" height={75} />
+      <WavesLayerd fill="fill-zinc-100 dark:fill-zinc-900" height={150} />
       <MerchShowcase />
       <Footer />
     </>
@@ -48,7 +48,7 @@ function HeroSection() {
   }, []);
 
   return (
-    <section className="hero-section bg-zinc-100 dark:bg-zinc-800 py-16 md:py-24">
+    <section className="hero-section bg-zinc-100 dark:bg-zinc-900 py-16 md:py-24 cursor-pointer">
       <div className="container mx-auto px-5">
         <div className="flex flex-col md:flex-row justify-around items-center">
           <div className="md:w-2/3 text-left mb-8 md:mb-0">
@@ -125,7 +125,7 @@ function HeroSection() {
 
 function LatestRelease() {
   return (
-    <section className="relative bg-white dark:bg-zinc-700 py-16">
+    <section className="relative bg-zinc-200 dark:bg-zinc-800 py-24 cursor-pointer">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
         <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mb-8 text-center">
           Latest Release
@@ -177,7 +177,7 @@ function UpcomingTours() {
   ];
 
   return (
-    <section className="relative bg-zinc-100 dark:bg-zinc-800 py-16">
+    <section className="relative bg-zinc-100 dark:bg-zinc-900 py-24 cursor-pointer">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
         <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mb-8 text-center">
           Upcoming Tours
@@ -215,7 +215,7 @@ function UpcomingTours() {
 
 function MerchShowcase() {
   return (
-    <section className="relative bg-white dark:bg-zinc-700 py-16">
+    <section className="relative bg-zinc-200 dark:bg-zinc-700 pt-52 pb-24 cursor-pointer">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mb-8 text-center">
           Merch Store

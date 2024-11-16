@@ -7,6 +7,7 @@ import Contact from "./pages/contact.js";
 import PageNotFound from "./pages/404.js";
 import Music from "./pages/music.js";
 import Cart from "./pages/cart.js";
+import ComingSoon from "./pages/comingsoon.js";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/music" element={<Music />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/soon" element={<ComingSoon />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </>

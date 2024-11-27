@@ -15,12 +15,11 @@ function ComingSoon() {
   });
 
   useEffect(() => {
-    // Generate a random date between 1 month and 1 year from now
     const now = new Date();
     const randomFuture = new Date(
-      now.getTime() +
-        Math.random() * (365 - 30) * 24 * 60 * 60 * 1000 +
-        30 * 24 * 60 * 60 * 1000
+      now.getFullYear() + Math.floor(Math.random() * 2), // Random year within 1-2 years
+      Math.floor(Math.random() * 12), // Random month (0-11)
+      Math.floor(Math.random() * 28) + 1 // Random day (1-28 to avoid invalid dates)
     );
     setLaunchDate(randomFuture);
   }, []);
@@ -33,15 +32,19 @@ function ComingSoon() {
       const difference = launchDate.getTime() - now;
 
       setTimeLeft({
-        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-        hours: Math.floor(
-          (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        days: Math.max(Math.floor(difference / (1000 * 60 * 60 * 24)), 0),
+        hours: Math.max(
+          Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          0
         ),
-        minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
-        seconds: Math.floor((difference % (1000 * 60)) / 1000),
+        minutes: Math.max(
+          Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+          0
+        ),
+        seconds: Math.max(Math.floor((difference % (1000 * 60)) / 1000), 0),
       });
 
-      if (difference < 0) {
+      if (difference <= 0) {
         clearInterval(timer);
       }
     }, 1000);
@@ -50,7 +53,7 @@ function ComingSoon() {
   }, [launchDate]);
 
   const navigate = useNavigate();
-  const handelSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     navigate("/");
   };
@@ -58,36 +61,32 @@ function ComingSoon() {
   return (
     <>
       <NavBar />
-      <div className="min-h-screen bg-zinc-100 dark:bg-zinc-900 flex flex-col justify-center items-center p-4">
+      <div className="min-h-screen bg-zinc-900 text-zinc-100 flex flex-col justify-center items-center p-4">
         <div className="max-w-4xl w-full text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-zinc-800 dark:text-zinc-100 mb-4">
+          <h1 className="text-4xl md:text-6xl font-bold mb-4">
             Launching Soon
           </h1>
-          <p className="text-xl text-zinc-600 dark:text-zinc-300 mb-8">
+          <p className="text-xl text-zinc-300 mb-8">
             Get ready for something extraordinary. Our launch is just around the
             corner!
           </p>
 
           {launchDate && (
-            <p className="text-lg text-red-600 dark:text-red-400 mb-6">
-              Launch Date: {launchDate.toLocaleString()}
+            <p className="text-lg text-red-400 mb-6">
+              Launch Date: {launchDate.toLocaleDateString()}
             </p>
           )}
 
           <div className="flex justify-center space-x-4 mb-12">
             {Object.entries(timeLeft).map(([unit, value]) => (
               <div key={unit} className="flex flex-col items-center">
-                <span className="text-3xl font-bold text-red-600 dark:text-red-400">
-                  {value}
-                </span>
-                <span className="text-sm uppercase text-zinc-500 dark:text-zinc-400">
-                  {unit}
-                </span>
+                <span className="text-3xl font-bold text-red-400">{value}</span>
+                <span className="text-sm uppercase text-zinc-400">{unit}</span>
               </div>
             ))}
           </div>
 
-          <form onSubmit={handelSubmit} className="flex justify-center mb-8">
+          <form onSubmit={handleSubmit} className="flex justify-center mb-8">
             <div className="relative">
               <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400" />
               <input
@@ -95,37 +94,37 @@ function ComingSoon() {
                 placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="pl-10 pr-4 py-2 w-64 md:w-80 rounded-l-md bg-white dark:bg-zinc-800 text-zinc-800 dark:text-zinc-100 border border-zinc-300 dark:border-zinc-700 focus:outline-none focus:ring-2 focus:ring-red-500 dark:focus:ring-red-400"
+                className="pl-10 pr-4 py-2 w-64 md:w-80 rounded-l-md bg-zinc-800 text-zinc-100 border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-red-400"
                 required
               />
             </div>
             <button
               type="submit"
-              className="bg-red-600 hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600 text-white font-bold py-2 px-4 rounded-r-md transition duration-300 ease-in-out flex items-center"
+              className="bg-red-500 hover:bg-red-600 text-zinc-100 font-bold py-2 px-4 rounded-r-md transition duration-300 ease-in-out flex items-center"
             >
               Notify Me
               <ArrowRight className="ml-2" size={18} />
             </button>
           </form>
 
-          <div className="text-zinc-500 dark:text-zinc-400">
+          <div className="text-zinc-400">
             <p>Stay connected with us:</p>
             <div className="flex justify-center space-x-4 mt-4">
               <a
                 href="/twitter"
-                className="hover:text-red-600 dark:hover:text-red-400 transition duration-300"
+                className="hover:text-red-400 transition duration-300"
               >
                 Twitter
               </a>
               <a
                 href="/facebook"
-                className="hover:text-red-600 dark:hover:text-red-400 transition duration-300"
+                className="hover:text-red-400 transition duration-300"
               >
                 Facebook
               </a>
               <a
                 href="/instagram"
-                className="hover:text-red-600 dark:hover:text-red-400 transition duration-300"
+                className="hover:text-red-400 transition duration-300"
               >
                 Instagram
               </a>

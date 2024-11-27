@@ -5,8 +5,9 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import SpotifyIcon from "../assets/images/spotify-icon.svg";
 import AppleMusicIcon from "../assets/images/apple-music-icon.svg";
-import YoutubeMusicIcon from "../assets/images/youtube-music-icon.svg";
-import AmazonMusicIcon from "../assets/images/amazon-music-icon.svg";
+import YoutubeMusicIcon from "../assets/images/youtube-music-icon.png";
+import AmazonMusicIcon from "../assets/images/amazon-music-icon.png";
+import Nights from "../assets/images/neonnights.jpg";
 
 export default function Music() {
   const [currentTrack, setCurrentTrack] = useState(0);
@@ -16,7 +17,7 @@ export default function Music() {
     {
       title: "Neon Nights",
       year: 2024,
-      cover: "/placeholder.svg?height=300&width=300",
+      cover: Nights,
       tracks: [
         { title: "Electric Dreams", duration: "3:45" },
         { title: "Midnight Ride", duration: "4:12" },
@@ -55,8 +56,8 @@ export default function Music() {
   return (
     <>
       <NavBar />
-      <div className="min-h-screen bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100">
-        <header className="bg-zinc-200 dark:bg-zinc-800 py-12">
+      <div className="min-h-screen bg-neonBlack text-white">
+        <header className="pt-10 pb-6">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h1 className="text-4xl font-bold text-center">Our Music</h1>
           </div>
@@ -64,8 +65,10 @@ export default function Music() {
 
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <section className="mb-16">
-            <h2 className="text-3xl font-bold mb-8">Latest Tracks</h2>
-            <div className="bg-white dark:bg-zinc-800 rounded-lg shadow-lg p-6">
+            <h2 className="text-3xl text-neonPink font-bold mb-8">
+              Latest Tracks
+            </h2>
+            <div className="bg-zinc-950 rounded-lg shadow-lg p-6">
               <div className="flex flex-col md:flex-row items-center gap-8">
                 <img
                   src={albums[0].cover}
@@ -82,8 +85,8 @@ export default function Music() {
                         key={index}
                         className={`flex items-center justify-between p-2 rounded ${
                           currentTrack === index
-                            ? "bg-red-100 dark:bg-red-900"
-                            : "hover:bg-zinc-100 dark:hover:bg-zinc-700"
+                            ? "bg-neonBlue"
+                            : "hover:bg-neonPink"
                         }`}
                       >
                         <div className="flex items-center gap-4">
@@ -92,7 +95,7 @@ export default function Music() {
                               setCurrentTrack(index);
                               setIsPlaying(true);
                             }}
-                            className="text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300"
+                            className="text-white hover:text-zinc-100"
                           >
                             {currentTrack === index && isPlaying ? (
                               <Pause size={20} />
@@ -102,7 +105,7 @@ export default function Music() {
                           </button>
                           <span>{track.title}</span>
                         </div>
-                        <span className="text-zinc-500 dark:text-zinc-400">
+                        <span className="dark:text-white">
                           {track.duration}
                         </span>
                       </div>
@@ -113,46 +116,45 @@ export default function Music() {
               <div className="mt-8">
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-4">
-                    <button className="text-zinc-600 dark:text-zinc-400 hover:text-red-600 dark:hover:text-red-400">
+                    <button className="text-white hover:text-neonPink">
                       <SkipBack size={24} />
                     </button>
                     <button
                       onClick={() => setIsPlaying(!isPlaying)}
-                      className="text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300"
+                      className="text-neonBlue hover:text-neonPink"
                     >
                       {isPlaying ? <Pause size={32} /> : <Play size={32} />}
                     </button>
-                    <button className="text-zinc-600 dark:text-zinc-400 hover:text-red-600 dark:hover:text-red-400">
+                    <button className="text-white hover:text-neonPink">
                       <SkipForward size={24} />
                     </button>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Volume2
-                      size={20}
-                      className="text-zinc-600 dark:text-zinc-400"
-                    />
-                    <div className="w-24 h-2 bg-zinc-200 dark:bg-zinc-700 rounded-full">
-                      <div className="w-3/4 h-full bg-red-600 dark:bg-red-400 rounded-full"></div>
+                    <Volume2 size={20} className="text-white" />
+                    <div className="w-24 h-2 bg-zinc-800 rounded-full">
+                      <div className="w-3/4 h-full bg-neonBlue rounded-full"></div>
                     </div>
                   </div>
                 </div>
-                <div className="h-1 bg-zinc-200 dark:bg-zinc-700 rounded-full">
-                  <div className="w-1/3 h-full bg-red-600 dark:bg-red-400 rounded-full"></div>
+                <div className="h-1 bg-zinc-800 rounded-full">
+                  <div className="w-1/3 h-full bg-neonBlue rounded-full"></div>
                 </div>
               </div>
             </div>
           </section>
 
           <section className="mb-16">
-            <h2 className="text-3xl font-bold mb-8">Discography</h2>
+            <h2 className="text-3xl text-neonPink font-bold mb-8">
+              Discography
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {albums.map((album, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-white dark:bg-zinc-800 rounded-lg shadow-lg overflow-hidden"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: index * 0.2 }}
+                  className="bg-zinc-950 hover:scale-105 transition duration-300 text-white rounded-lg shadow-lg overflow-hidden"
                 >
                   <img
                     src={album.cover}
@@ -163,14 +165,12 @@ export default function Music() {
                     <h3 className="text-xl font-semibold mb-2">
                       {album.title}
                     </h3>
-                    <p className="text-zinc-600 dark:text-zinc-400 mb-4">
-                      {album.year}
-                    </p>
+                    <p className="text-neonPink mb-4">{album.year}</p>
                     <ul className="space-y-2">
                       {album.tracks.map((track, trackIndex) => (
                         <li key={trackIndex} className="flex justify-between">
                           <span>{track.title}</span>
-                          <span className="text-zinc-500 dark:text-zinc-400">
+                          <span className="text-neonBlue">
                             {track.duration}
                           </span>
                         </li>
@@ -183,7 +183,7 @@ export default function Music() {
           </section>
 
           <section>
-            <h2 className="text-3xl font-bold mb-8">
+            <h2 className="text-3xl text-neonPink font-bold mb-8">
               Listen on Your Favorite Platform
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -193,7 +193,7 @@ export default function Music() {
                   href={platform.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center bg-white dark:bg-zinc-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300"
+                  className="flex items-center justify-center bg-zinc-950 rounded-lg shadow-md p-6 hover:scale-105 ease-in-out transition duration-300"
                 >
                   <img
                     src={platform.icon}

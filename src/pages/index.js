@@ -1,7 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Play, Calendar, ShoppingBag } from "lucide-react";
-import { Waves, WavesLayerd } from "../components/ShapeDividers";
 import Typed from "typed.js";
 import NavBar from "../components/NavBar";
 import Logo from "../assets/images/logo.png";
@@ -10,18 +9,19 @@ import Cover from "../assets/images/neonnights.jpg";
 import TourT from "../assets/images/tour.jpg";
 import Album from "../assets/images/album.jpg";
 import Poster from "../assets/images/poster.jpg";
+import RockBackgroundAnimation from "../components/RockBackgroundAnimation";
 
 export default function Home() {
   return (
     <>
       <NavBar />
-      <HeroSection />
-      <Waves fill="fill-zinc-100 dark:fill-zinc-900" height={150} />
-      <LatestRelease />
-      <Waves fill="fill-zinc-200 dark:fill-zinc-800" height={100} />
-      <UpcomingTours />
-      <WavesLayerd fill="fill-zinc-100 dark:fill-zinc-900" height={150} />
-      <MerchShowcase />
+      <RockBackgroundAnimation />
+      <div className="bg-neonBlack bg-opacity-80">
+        <HeroSection />
+        <LatestRelease />
+        <UpcomingTours />
+        <MerchShowcase />
+      </div>
       <Footer />
     </>
   );
@@ -48,7 +48,7 @@ function HeroSection() {
   }, []);
 
   return (
-    <section className="hero-section bg-zinc-100 dark:bg-zinc-900 py-16 md:py-24 cursor-pointer">
+    <section className="hero-section py-16 md:py-24">
       <div className="container mx-auto px-5">
         <div className="flex flex-col md:flex-row justify-around items-center">
           <div className="md:w-2/3 text-left mb-8 md:mb-0">
@@ -56,12 +56,12 @@ function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-zinc-900 dark:text-zinc-100 mb-6"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-neonBlue mb-6"
             >
               <strong>
                 Igniting the night with
                 <br />
-                <span className="text-red-600 dark:text-red-400">
+                <span className="text-neonPink">
                   <span ref={el}></span>
                 </span>
               </strong>
@@ -71,7 +71,7 @@ function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-xl text-zinc-700 dark:text-zinc-300 mb-8 max-w-2xl"
+              className="text-xl text-neonBlue mb-8 max-w-2xl"
             >
               At Stage Fright, we bring the electrifying energy of live
               performances directly to you. Experience the raw power of rock
@@ -88,13 +88,13 @@ function HeroSection() {
             >
               <a
                 href="/tours"
-                className="bg-red-600 text-white hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600 px-8 py-3 rounded-full font-semibold text-lg transition duration-300 ease-in-out transform hover:scale-105 text-center"
+                className="bg-neonPink text-white hover:text-black hover:bg-neonBlue px-8 py-3 rounded-full font-semibold text-lg transition duration-300 ease-in-out transform hover:scale-105 text-center"
               >
                 View Tour Dates
               </a>
               <a
                 href="/music"
-                className="bg-zinc-800 text-zinc-100 hover:bg-zinc-700 dark:bg-zinc-700 dark:hover:bg-zinc-600 px-8 py-3 rounded-full font-semibold text-lg transition duration-300 ease-in-out transform hover:scale-105 text-center"
+                className="bg-neonBlue text-black hover:text-white hover:bg-neonPink px-8 py-3 rounded-full font-semibold text-lg transition duration-300 ease-in-out transform hover:scale-105 text-center"
               >
                 Listen Now
               </a>
@@ -124,28 +124,65 @@ function HeroSection() {
 }
 
 function LatestRelease() {
+  const [inView, setInView] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+        }
+      },
+      { threshold: 0.5 }
+    );
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <section className="relative bg-zinc-200 dark:bg-zinc-800 py-24 cursor-pointer">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
-        <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mb-8 text-center">
+    <section ref={sectionRef} className="relative py-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-5xl font-bold text-neonPink mb-8 text-center">
           Latest Release
         </h2>
-        <div className="flex flex-col md:flex-row items-center justify-center gap-8">
-          <img
-            src={Cover}
-            alt="Album Cover"
-            className="w-64 h-64 object-cover rounded-lg shadow-lg hover:scale-105 duration-300 ease-in-out"
-          />
-          <div className="text-center md:text-left">
-            <h3 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-100 mb-2">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-12">
+          <motion.div
+            initial={{ x: -100, opacity: 0 }}
+            animate={inView ? { x: 0, opacity: 1 } : {}}
+            transition={{ duration: 0.8 }}
+            className="w-72 h-72 md:w-96 md:h-96 relative"
+          >
+            <img
+              src={Cover}
+              alt="Album Cover"
+              className="w-full h-full object-cover rounded-lg shadow-lg hover:scale-105 duration-300 ease-in-out"
+            />
+          </motion.div>
+
+          <div className="text-center md:text-right max-w-lg">
+            <h3 className="text-4xl font-semibold text-neonBlue mb-4">
               Neon Nights
             </h3>
-            <p className="text-zinc-600 dark:text-zinc-400 mb-4">
-              Our latest album featuring 12 electrifying tracks
+            <p className="text-white mb-5 text-xl leading-relaxed">
+              Our latest album, Neon Nights, brings together a perfect blend of
+              vibrant, electrifying tracks that will get you moving from the
+              very first note. With 12 electrifying songs, each track tells a
+              story of adventure, late nights, and the energy of the neon-lit
+              city streets. Featuring collaborations with some of the hottest
+              new artists in the scene, this album is bound to be on repeat for
+              weeks to come. Don't miss out on the album that everyone's talking
+              about!
             </p>
             <a
               href="/music"
-              className="bg-red-600 text-white hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600 px-6 py-2 rounded-full font-semibold transition duration-300 ease-in-out flex items-center justify-center gap-2"
+              className="bg-neonPink text-white hover:text-black hover:bg-neonBlue px-6 py-2 rounded-full font-semibold transition hover:scale-105 duration-300 ease-in-out flex items-center justify-center gap-2"
             >
               <Play size={20} />
               Listen Now
@@ -176,36 +213,62 @@ function UpcomingTours() {
     },
   ];
 
+  const [inView, setInView] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+        }
+      },
+      { threshold: 0.5 }
+    );
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <section className="relative bg-zinc-100 dark:bg-zinc-900 py-24 cursor-pointer">
+    <section ref={sectionRef} className="relative py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
-        <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mb-8 text-center">
+        <h2 className="text-5xl font-bold text-neonPink mb-8 text-center">
           Upcoming Tours
         </h2>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {tours.map((tour, index) => (
-            <div
+            <motion.div
               key={index}
-              className="bg-white dark:bg-zinc-800 rounded-lg shadow-md p-6 hover:scale-105 duration-300 ease-in-out"
+              initial={{ opacity: 0 }}
+              animate={inView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.8, delay: index * 0.2 }}
+              className="bg-neonBlue rounded-lg shadow-md p-6 hover:scale-105 transition duration-300 ease-in-out"
             >
               <div className="flex items-center gap-4 mb-4">
-                <Calendar className="text-red-600 dark:text-red-400" />
-                <span className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+                <Calendar className="text-neonPink" />
+                <span className="text-lg font-semibold text-black">
                   {tour.date}
                 </span>
               </div>
-              <p className="text-zinc-600 dark:text-zinc-400 mb-4">
-                {tour.venue}
-              </p>
+              <p className="text-black mb-4">{tour.venue}</p>
               <div className="flex justify-between items-center">
-                <span className="text-sm text-zinc-500 dark:text-zinc-500">
+                <span className="text-sm text-black">
                   {tour.ticketsLeft} tickets left
                 </span>
-                <button className="bg-red-600 text-white hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600 px-4 py-2 rounded-full text-sm font-semibold transition duration-300 ease-in-out">
+                <a
+                  href="/tours"
+                  className="bg-neonPink text-white hover:text-black hover:bg-neonBlue px-4 py-2 rounded-full text-sm font-semibold transition duration-300 ease-in-out"
+                >
                   Book Now
-                </button>
+                </a>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -214,66 +277,101 @@ function UpcomingTours() {
 }
 
 function MerchShowcase() {
+  const [inView, setInView] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
+  const merchItems = [
+    {
+      img: TourT,
+      title: "Band T-Shirt",
+      description: "Show your Stage Fright spirit",
+      price: "$29.99",
+      alt: "Tour T-Shirt",
+    },
+    {
+      img: Poster,
+      title: "Neon Nights Poster",
+      description: "Limited Edition Tour Poster",
+      price: "$14.99",
+      alt: "Tour Poster",
+    },
+    {
+      img: Album,
+      title: "Neon Nights Album",
+      description: "Our Latest Full-Length Album",
+      price: "$19.99",
+      alt: "Album",
+    },
+  ];
+
+  const cardVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+  };
+
   return (
-    <section className="relative bg-zinc-200 dark:bg-zinc-700 pt-52 pb-24 cursor-pointer">
+    <section ref={sectionRef} className="relative py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mb-8 text-center">
+        <h2 className="text-5xl font-bold text-neonPink mb-8 text-center">
           Merch Store
         </h2>
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          <div className="bg-white dark:bg-zinc-800 rounded-lg shadow-md overflow-hidden hover:scale-105 duration-300 ease-in-out">
-            <img
-              src={TourT}
-              className="w-full h-48 object-cover"
-              alt="T-Shirt"
-            />
-            <div className="p-4">
-              <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-2">
-                Tour T-Shirt
-              </h3>
-              <div className="flex justify-between items-center">
-                <span className="text-zinc-600 dark:text-zinc-400">$25</span>
-                <button className="bg-red-600 text-white hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600 px-4 py-2 rounded-full text-sm font-semibold transition duration-300 ease-in-out flex items-center gap-2">
-                  <ShoppingBag size={16} />
-                  Add to Cart
-                </button>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {merchItems.map((item, index) => (
+            <motion.div
+              key={index}
+              className="bg-black rounded-lg shadow-md overflow-hidden transform transition-transform duration-300 ease-in-out hover:scale-105"
+              initial="hidden"
+              animate={inView ? "visible" : "hidden"}
+              variants={cardVariants}
+              transition={{
+                duration: 0.5,
+                delay: index * 0.2,
+              }}
+            >
+              <img
+                src={item.img}
+                className="w-full h-48 object-cover"
+                alt={item.alt}
+              />
+              <div className="p-4">
+                <h3 className="text-lg font-semibold text-neonPink">
+                  {item.title}
+                </h3>
+                <p className="text-white">{item.description}</p>
+                <span className="block text-lg text-neonPink">
+                  {item.price}
+                </span>
+                <a
+                  href="/merch"
+                  className="mt-4 bg-neonBlue text-black hover:text-white hover:bg-neonPink px-4 py-2 rounded-full text-sm font-semibold transition duration-300 ease-in-out flex items-center justify-center gap-2"
+                >
+                  <ShoppingBag size={20} />
+                  Shop Now
+                </a>
               </div>
-            </div>
-          </div>
-          <div className="bg-white dark:bg-zinc-800 rounded-lg shadow-md overflow-hidden hover:scale-105 duration-300 ease-in-out">
-            <img src={Album} className="w-full h-48 object-cover" alt="Vinyl" />
-            <div className="p-4">
-              <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-2">
-                Signed Vinyl
-              </h3>
-              <div className="flex justify-between items-center">
-                <span className="text-zinc-600 dark:text-zinc-400">$30</span>
-                <button className="bg-red-600 text-white hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600 px-4 py-2 rounded-full text-sm font-semibold transition duration-300 ease-in-out flex items-center gap-2">
-                  <ShoppingBag size={16} />
-                  Add to Cart
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="bg-white dark:bg-zinc-800 rounded-lg shadow-md overflow-hidden hover:scale-105 duration-300 ease-in-out">
-            <img
-              src={Poster}
-              className="w-full h-48 object-cover"
-              alt="Poster"
-            />
-            <div className="p-4">
-              <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-2">
-                Signed Poster
-              </h3>
-              <div className="flex justify-between items-center">
-                <span className="text-zinc-600 dark:text-zinc-400">$40</span>
-                <button className="bg-red-600 text-white hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600 px-4 py-2 rounded-full text-sm font-semibold transition duration-300 ease-in-out flex items-center gap-2">
-                  <ShoppingBag size={16} />
-                  Add to Cart
-                </button>
-              </div>
-            </div>
-          </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

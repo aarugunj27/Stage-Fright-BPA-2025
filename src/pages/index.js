@@ -136,12 +136,15 @@ function LatestRelease() {
       },
       { threshold: 0.5 }
     );
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+
+    const sectionElement = sectionRef.current; // Copy ref to a variable
+    if (sectionElement) {
+      observer.observe(sectionElement);
     }
+
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (sectionElement) {
+        observer.unobserve(sectionElement); // Use the variable here
       }
     };
   }, []);
@@ -225,12 +228,15 @@ function UpcomingTours() {
       },
       { threshold: 0.5 }
     );
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+
+    const sectionElement = sectionRef.current; // Copy ref to a variable
+    if (sectionElement) {
+      observer.observe(sectionElement);
     }
+
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (sectionElement) {
+        observer.unobserve(sectionElement); // Use the variable here
       }
     };
   }, []);
@@ -290,13 +296,14 @@ function MerchShowcase() {
       { threshold: 0.5 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    const sectionElement = sectionRef.current; // Copy ref to a variable
+    if (sectionElement) {
+      observer.observe(sectionElement);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (sectionElement) {
+        observer.unobserve(sectionElement); // Use the variable here
       }
     };
   }, []);

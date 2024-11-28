@@ -2,8 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
-// import { Waves, WavesOpacity, WavesLayerd } from "../components/ShapeDividers";
-import Alex from "../assets/images/alex.jpg";
+import Alex from "../assets/images/alex.jpg"; // Replace placeholder with real image paths
 import { Users, Music, Trophy, Mic } from "lucide-react";
 import CountUp from "react-countup";
 import RockBackgroundAnimation from "../components/RockBackgroundAnimation";
@@ -14,7 +13,6 @@ function About() {
     stats: false,
     bandMembers: false,
     journey: false,
-    tour: false,
   });
 
   const sectionRefs = {
@@ -22,27 +20,23 @@ function About() {
     stats: useRef(null),
     bandMembers: useRef(null),
     journey: useRef(null),
-    tour: useRef(null),
   };
 
-  // Intersection observer hook
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const section = entry.target.id;
-            setInView((prev) => ({ ...prev, [section]: true }));
+            setInView((prev) => ({
+              ...prev,
+              [entry.target.id]: true,
+            }));
           }
         });
       },
-      {
-        threshold: 0.2, // Trigger when 20% of the section is visible
-        rootMargin: "0px 0px -100px 0px", // Ensures triggering happens earlier
-      }
+      { threshold: 0.2, rootMargin: "0px 0px -100px 0px" }
     );
 
-    // Observe each section
     Object.values(sectionRefs).forEach((ref) => {
       if (ref.current) observer.observe(ref.current);
     });
@@ -54,11 +48,59 @@ function About() {
     };
   }, []);
 
+  const bandMembers = [
+    {
+      name: "Alex Carter",
+      role: "Lead Vocalist",
+      description:
+        "The voice of the band, bringing powerful energy to every performance.",
+      image: Alex,
+    },
+    {
+      name: "Jordan Lee",
+      role: "Guitarist",
+      description:
+        "Crafting electrifying solos that leave audiences mesmerized.",
+      image: "https://via.placeholder.com/150",
+    },
+    {
+      name: "Taylor Smith",
+      role: "Bassist",
+      description: "Laying down the groove and keeping the rhythm tight.",
+      image: "https://via.placeholder.com/150",
+    },
+    {
+      name: "Chris Johnson",
+      role: "Drummer",
+      description: "Setting the tempo with dynamic and powerful drumming.",
+      image: "https://via.placeholder.com/150",
+    },
+    {
+      name: "Sam Walker",
+      role: "Keyboardist",
+      description: "Adding depth and texture to the band’s signature sound.",
+      image: "https://via.placeholder.com/150",
+    },
+    {
+      name: "Jamie Brown",
+      role: "Backing Vocalist",
+      description: "Harmonizing and enhancing the band’s vocal power.",
+      image: "https://via.placeholder.com/150",
+    },
+  ];
+
+  const stats = [
+    { icon: Users, label: "Fans Worldwide", value: 500000 },
+    { icon: Music, label: "Albums Released", value: 4 },
+    { icon: Trophy, label: "Music Awards", value: 12 },
+    { icon: Mic, label: "Live Shows", value: 1000 },
+  ];
+
   return (
     <>
       <NavBar />
       <RockBackgroundAnimation />
-      <div className="min-h-screen bg-black text-white bg-opacity-80">
+      <div className="min-h-screen bg-black bg-opacity-80 text-white">
         {/* Hero Section */}
         <section
           ref={sectionRefs.hero}
@@ -71,7 +113,7 @@ function About() {
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto text-center"
           >
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-6">
+            <h1 className="text-4xl sm:text-5xl font-extrabold mb-6">
               Meet <span className="text-neonPink">Stage Fright</span>
             </h1>
             <p className="text-lg text-gray-400 mb-8">
@@ -81,31 +123,24 @@ function About() {
           </motion.div>
         </section>
 
-        {/*<Waves fill="fill-black" height={100} />*/}
-
         {/* Stats Section */}
         <section ref={sectionRefs.stats} id="stats" className="pt-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {[
-                { icon: Users, label: "Fans Worldwide", value: 500000 },
-                { icon: Music, label: "Albums Released", value: 4 },
-                { icon: Trophy, label: "Music Awards", value: 12 },
-                { icon: Mic, label: "Live Shows", value: 1000 },
-              ].map((stat, index) => (
+              {stats.map((stat, index) => (
                 <motion.div
                   key={stat.label}
                   initial={{ opacity: 0, y: 20 }}
                   animate={inView.stats ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.8, delay: index * 0.2 }}
-                  className="text-center hover:scale-105 transform transition duration-300 ease-in-out"
+                  className="text-center hover:scale-105 transform transition duration-300"
                 >
                   <stat.icon className="h-8 w-8 mx-auto mb-4 text-neonPink" />
-                  <p className="text-3xl font-bold text-whtie mb-2">
+                  <p className="text-3xl font-bold text-white mb-2">
                     <CountUp
-                      start={inView.stats ? 0 : null} // Starts animation when in view
+                      start={inView.stats ? 0 : null}
                       end={stat.value}
-                      duration={2} // Animation duration in seconds
+                      duration={2}
                       separator=","
                     />
                     {stat.label === "Fans Worldwide" && "+"}
@@ -116,8 +151,6 @@ function About() {
             </div>
           </div>
         </section>
-
-        {/*<Waves fill="fill-neonBlue" height={100} /> */}
 
         {/* Band Members Section */}
         <section
@@ -132,65 +165,19 @@ function About() {
               transition={{ duration: 0.8 }}
               className="text-center mb-16"
             >
-              <h2 className="text-5xl font-extrabold text-white mb-4">
-                The Band
-              </h2>
+              <h2 className="text-5xl font-extrabold mb-4">The Band</h2>
               <p className="text-xl text-zinc-200">
                 Meet the talented individuals behind Stage Fright
               </p>
             </motion.div>
-
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-              {[
-                {
-                  name: "Alex Carter",
-                  role: "Lead Vocalist",
-                  description:
-                    "The voice of the band, bringing powerful energy to every performance.",
-                  image: Alex,
-                },
-                {
-                  name: "Jordan Lee",
-                  role: "Guitarist",
-                  description:
-                    "Crafting electrifying solos that leave audiences mesmerized.",
-                  image: "https://via.placeholder.com/150", // Replace with actual image
-                },
-                {
-                  name: "Taylor Smith",
-                  role: "Bassist",
-                  description:
-                    "Laying down the groove and keeping the rhythm tight.",
-                  image: "https://via.placeholder.com/150", // Replace with actual image
-                },
-                {
-                  name: "Chris Johnson",
-                  role: "Drummer",
-                  description:
-                    "Setting the tempo with dynamic and powerful drumming.",
-                  image: "https://via.placeholder.com/150", // Replace with actual image
-                },
-                {
-                  name: "Sam Walker",
-                  role: "Keyboardist",
-                  description:
-                    "Adding depth and texture to the band’s signature sound.",
-                  image: "https://via.placeholder.com/150", // Replace with actual image
-                },
-                {
-                  name: "Jamie Brown",
-                  role: "Backing Vocalist",
-                  description:
-                    "Harmonizing and enhancing the band’s vocal power.",
-                  image: "https://via.placeholder.com/150", // Replace with actual image
-                },
-              ].map((member, index) => (
+              {bandMembers.map((member, index) => (
                 <motion.div
                   key={member.name}
                   initial={{ opacity: 0 }}
                   animate={inView.bandMembers ? { opacity: 1 } : {}}
                   transition={{ duration: 0.8, delay: index * 0.2 }}
-                  className="bg-zinc-950 rounded-lg overflow-hidden shadow-lg hover:scale-105 transform transition duration-300 ease-in-out"
+                  className="bg-zinc-950 rounded-lg overflow-hidden shadow-lg hover:scale-105 transform transition duration-300"
                 >
                   <img
                     src={member.image}
@@ -212,8 +199,6 @@ function About() {
           </div>
         </section>
 
-        {/*<WavesLayerd fill="fill-black" height={150} /> */}
-
         {/* Our Journey Section */}
         <section
           ref={sectionRefs.journey}
@@ -227,9 +212,7 @@ function About() {
               transition={{ duration: 0.8 }}
               className="text-center mb-16"
             >
-              <h2 className="text-5xl font-bold text-white mb-4">
-                Our Journey
-              </h2>
+              <h2 className="text-5xl font-bold mb-4">Our Journey</h2>
               <p className="text-lg text-white">
                 From humble beginnings in local venues to selling out major
                 arenas, Stage Fright has come a long way. Don’t miss your chance
@@ -238,7 +221,7 @@ function About() {
               <div className="pt-10">
                 <a
                   href="/tours"
-                  className="bg-neonPink text-white hover:text-black hover:bg-neonBlue px-8 py-3 rounded-full font-semibold text-lg hover:scale-105 transition duration-300 ease-in-out text-center"
+                  className="bg-neonPink text-white hover:text-black hover:bg-neonBlue px-8 py-3 rounded-full font-semibold text-lg hover:scale-105 transition duration-300 text-center"
                 >
                   View Tour Dates
                 </a>

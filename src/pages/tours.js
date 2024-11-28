@@ -11,6 +11,7 @@ function TourEvent({ tour, index, isLast }) {
   const controls = useAnimation();
 
   useEffect(() => {
+    const element = ref.current; // Store the current value of ref
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -18,21 +19,19 @@ function TourEvent({ tour, index, isLast }) {
           observer.unobserve(entry.target);
         }
       },
-      {
-        threshold: 0.1,
-      }
+      { threshold: 0.1 }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
+    if (element) {
+      observer.observe(element);
     }
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
+      if (element) {
+        observer.unobserve(element); // Use the stored element value
       }
     };
-  }, []);
+  }, []); // Dependencies remain unchanged
 
   useEffect(() => {
     if (isVisible) {
@@ -141,7 +140,7 @@ function Tours() {
     <>
       <NavBar />
       <RockBackgroundAnimation />
-      <div className="bg-neonBlack bg-opacity-90 text-white min-h-screen py-12 px-6 relative z-10">
+      <div className="bg-neonBlack bg-opacity-80 text-white min-h-screen py-12 px-6 relative z-10">
         <motion.header
           className="text-center"
           initial={{ opacity: 0, y: -50 }}

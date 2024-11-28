@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { motion } from "framer-motion";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
@@ -15,12 +15,22 @@ function About() {
     journey: false,
   });
 
-  const sectionRefs = {
-    hero: useRef(null),
-    stats: useRef(null),
-    bandMembers: useRef(null),
-    journey: useRef(null),
-  };
+  // Create refs outside of useMemo, then memoize the object with useMemo
+  const heroRef = useRef(null);
+  const statsRef = useRef(null);
+  const bandMembersRef = useRef(null);
+  const journeyRef = useRef(null);
+
+  // Memoize the sectionRefs object to ensure stable references
+  const sectionRefs = useMemo(
+    () => ({
+      hero: heroRef,
+      stats: statsRef,
+      bandMembers: bandMembersRef,
+      journey: journeyRef,
+    }),
+    []
+  ); // Empty dependency array ensures stable reference
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -37,16 +47,18 @@ function About() {
       { threshold: 0.2, rootMargin: "0px 0px -100px 0px" }
     );
 
-    Object.values(sectionRefs).forEach((ref) => {
-      if (ref.current) observer.observe(ref.current);
+    const refs = Object.values(sectionRefs).map((ref) => ref.current);
+
+    refs.forEach((ref) => {
+      if (ref) observer.observe(ref);
     });
 
     return () => {
-      Object.values(sectionRefs).forEach((ref) => {
-        if (ref.current) observer.unobserve(ref.current);
+      refs.forEach((ref) => {
+        if (ref) observer.unobserve(ref);
       });
     };
-  }, []);
+  }, [sectionRefs]);
 
   const bandMembers = [
     {

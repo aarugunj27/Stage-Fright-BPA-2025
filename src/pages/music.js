@@ -8,6 +8,7 @@ import AppleMusicIcon from "../assets/images/apple-music-icon.svg";
 import YoutubeMusicIcon from "../assets/images/youtube-music-icon.png";
 import AmazonMusicIcon from "../assets/images/amazon-music-icon.png";
 import Nights from "../assets/images/neonnights.jpg";
+import RockBackgroundAnimation from "../components/RockBackgroundAnimation";
 
 export default function Music() {
   const [currentTrack, setCurrentTrack] = useState(0);
@@ -47,16 +48,29 @@ export default function Music() {
   ];
 
   const streamingPlatforms = [
-    { name: "Spotify", url: "/spotify", icon: SpotifyIcon },
-    { name: "Apple Music", url: "/apple", icon: AppleMusicIcon },
-    { name: "YouTube Music", url: "/youtube", icon: YoutubeMusicIcon },
-    { name: "Amazon Music", url: "/amazon", icon: AmazonMusicIcon },
+    { name: "Spotify", url: "https://open.spotify.com/", icon: SpotifyIcon },
+    {
+      name: "Apple Music",
+      url: "https://www.apple.com/apple-music/",
+      icon: AppleMusicIcon,
+    },
+    {
+      name: "YouTube Music",
+      url: "https://music.youtube.com/",
+      icon: YoutubeMusicIcon,
+    },
+    {
+      name: "Amazon Music",
+      url: "https://www.amazon.com/music/unlimited/?ref_=dmm_acq_mrn_d_br_z_6FVQ2BuP-c_c_720498402661_g_104333615228",
+      icon: AmazonMusicIcon,
+    },
   ];
 
   return (
     <>
       <NavBar />
-      <div className="min-h-screen bg-neonBlack text-white">
+      <RockBackgroundAnimation />
+      <div className="min-h-screen bg-neonBlack bg-opacity-80 text-white">
         <header className="pt-10 pb-6">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h1 className="text-4xl font-bold text-center">Our Music</h1>

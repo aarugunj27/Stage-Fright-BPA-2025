@@ -48,7 +48,7 @@ function HeroSection() {
   }, []);
 
   return (
-    <section className="hero-section py-16 md:py-24">
+    <section className="hero-section py-16 px-10 md:py-24">
       <div className="container mx-auto px-5">
         <div className="flex flex-col md:flex-row justify-around items-center">
           <div className="md:w-2/3 text-left mb-8 md:mb-0">

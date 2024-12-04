@@ -37,7 +37,7 @@ function NavBar() {
                   className="relative text-base font-medium text-white hover:text-neonPink transition-colors duration-200"
                 >
                   {item}
-                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-red-400 transform scale-x-0 transition-transform duration-300 origin-left hover:scale-x-100"></span>
+                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-neonPink transform scale-x-0 transition-transform duration-300 origin-left hover:scale-x-100"></span>
                 </a>
               ))}
             </div>
@@ -47,7 +47,7 @@ function NavBar() {
           <div className="flex items-center">
             <a
               href="/soon"
-              className="inline-flex items-center justify-center rounded-md text-base font-medium text-zinc-400 hover:text-red-400 transition-colors duration-200 mr-3"
+              className="inline-flex items-center justify-center rounded-md text-base font-medium text-white hover:text-neonPink transition-colors duration-300 mr-3"
             >
               <ShoppingCart className="h-5 w-5 rotate-0 scale-100" />
               <span className="sr-only">Shopping Cart</span>
@@ -56,7 +56,7 @@ function NavBar() {
             {/* Mobile Menu Toggle */}
             <button
               onClick={toggleMenu}
-              className="p-2 rounded-md text-zinc-400 hover:text-red-400 focus:outline-none focus:ring-2 focus:ring-red-400 md:hidden"
+              className="p-2 rounded-md text-zinc-400 hover:text-neonPink focus:outline-none focus:ring-2 focus:ring-neonPink md:hidden"
               aria-label="Toggle menu"
             >
               <Menu className="h-6 w-6" />
@@ -74,7 +74,7 @@ function NavBar() {
             <a
               key={item}
               href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-              className="block py-2 text-base font-medium text-zinc-400 hover:text-red-400 transition-colors duration-200"
+              className="block py-2 text-base font-medium text-zinc-400 hover:text-neonPink transition-colors duration-200"
               onClick={() => setIsMenuOpen(false)}
             >
               {item}

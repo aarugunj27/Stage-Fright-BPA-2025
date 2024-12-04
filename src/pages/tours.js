@@ -31,7 +31,7 @@ function TourEvent({ tour, index, isLast }) {
         observer.unobserve(element); // Use the stored element value
       }
     };
-  }, []); // Dependencies remain unchanged
+  }, []);
 
   useEffect(() => {
     if (isVisible) {

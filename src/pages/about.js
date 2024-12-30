@@ -2,7 +2,12 @@ import { useState, useEffect, useRef, useMemo } from "react";
 import { motion } from "framer-motion";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
-import Alex from "../assets/images/alex.jpg"; // Replace placeholder with real image paths
+import Alex from "../assets/images/alex.jpg";
+import Jordan from "../assets/images/jordan.jpeg";
+import Taylor from "../assets/images/taylor.jpeg";
+import Chris from "../assets/images/chris.jpeg";
+import Sam from "../assets/images/sam.jpeg";
+import Jamie from "../assets/images/jamie.jpeg";
 import { Users, Music, Trophy, Mic } from "lucide-react";
 import CountUp from "react-countup";
 import RockBackgroundAnimation from "../components/RockBackgroundAnimation";
@@ -73,31 +78,31 @@ function About() {
       role: "Guitarist",
       description:
         "Crafting electrifying solos that leave audiences mesmerized.",
-      image: "https://via.placeholder.com/150",
+      image: Jordan,
     },
     {
       name: "Taylor Smith",
       role: "Bassist",
       description: "Laying down the groove and keeping the rhythm tight.",
-      image: "https://via.placeholder.com/150",
+      image: Taylor,
     },
     {
       name: "Chris Johnson",
       role: "Drummer",
       description: "Setting the tempo with dynamic and powerful drumming.",
-      image: "https://via.placeholder.com/150",
+      image: Chris,
     },
     {
       name: "Sam Walker",
       role: "Keyboardist",
       description: "Adding depth and texture to the band’s signature sound.",
-      image: "https://via.placeholder.com/150",
+      image: Sam,
     },
     {
       name: "Jamie Brown",
       role: "Backing Vocalist",
       description: "Harmonizing and enhancing the band’s vocal power.",
-      image: "https://via.placeholder.com/150",
+      image: Jamie,
     },
   ];
 

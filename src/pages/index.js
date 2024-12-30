@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Play, Calendar, ShoppingBag } from "lucide-react";
+import { Play, Calendar, ShoppingBag, ArrowRight } from "lucide-react";
 import Typed from "typed.js";
 import NavBar from "../components/NavBar";
 import Logo from "../assets/images/logo.png";
@@ -152,7 +152,7 @@ function LatestRelease() {
   return (
     <section ref={sectionRef} className="relative py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-5xl font-bold text-neonPink mb-8 text-center">
+        <h2 className="text-5xl font-bold text-white mb-8 text-center">
           Latest Release
         </h2>
         <div className="flex flex-col md:flex-row items-center justify-between gap-12">
@@ -244,7 +244,7 @@ function UpcomingTours() {
   return (
     <section ref={sectionRef} className="relative py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
-        <h2 className="text-5xl font-bold text-neonPink mb-8 text-center">
+        <h2 className="text-5xl font-bold text-white mb-8 text-center">
           Upcoming Tours
         </h2>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -284,6 +284,7 @@ function UpcomingTours() {
 
 function MerchShowcase() {
   const [inView, setInView] = useState(false);
+  const [arrowZoom, setArrowZoom] = useState(false);
   const sectionRef = useRef(null);
 
   useEffect(() => {
@@ -296,14 +297,14 @@ function MerchShowcase() {
       { threshold: 0.5 }
     );
 
-    const sectionElement = sectionRef.current; // Copy ref to a variable
+    const sectionElement = sectionRef.current;
     if (sectionElement) {
       observer.observe(sectionElement);
     }
 
     return () => {
       if (sectionElement) {
-        observer.unobserve(sectionElement); // Use the variable here
+        observer.unobserve(sectionElement);
       }
     };
   }, []);
@@ -340,7 +341,7 @@ function MerchShowcase() {
   return (
     <section ref={sectionRef} className="relative py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-5xl font-bold text-neonPink mb-8 text-center">
+        <h2 className="text-5xl font-bold text-white mb-8 text-center">
           Merch Store
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -379,6 +380,27 @@ function MerchShowcase() {
               </div>
             </motion.div>
           ))}
+        </div>
+        <div className="mt-12 flex justify-end">
+          <a
+            href="/merch"
+            className="flex items-center gap-2 text-neonPink text-lg font-semibold hover:text-neonBlue transition duration-300"
+            onClick={() => setArrowZoom(true)}
+          >
+            Shop More
+            <motion.div
+              initial={{ scale: 1, x: 0 }}
+              animate={arrowZoom ? { scale: 1.5, x: 30 } : { scale: 1, x: 0 }}
+              transition={{
+                type: "spring",
+                stiffness: 300,
+                damping: 20,
+              }}
+              onAnimationComplete={() => setArrowZoom(false)}
+            >
+              <ArrowRight size={20} />
+            </motion.div>
+          </a>
         </div>
       </div>
     </section>

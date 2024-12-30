@@ -18,7 +18,7 @@ function ComingSoon() {
   useEffect(() => {
     const now = new Date();
     const randomFuture = new Date(
-      now.getFullYear() + Math.floor(Math.random() * 2), // Random year within 1-2 years
+      now.getFullYear() + Math.floor(Math.random() * 2 + 1), // Random year within 1-2 years
       Math.floor(Math.random() * 12), // Random month (0-11)
       Math.floor(Math.random() * 28) + 1 // Random day (1-28 to avoid invalid dates)
     );
@@ -78,17 +78,6 @@ function ComingSoon() {
               Launch Date: {launchDate.toLocaleDateString()}
             </p>
           )}
-
-          <div className="flex justify-center space-x-4 mb-12">
-            {Object.entries(timeLeft).map(([unit, value]) => (
-              <div key={unit} className="flex flex-col items-center">
-                <span className="text-3xl font-bold text-neonPink">
-                  {value}
-                </span>
-                <span className="text-sm uppercase text-zinc-300">{unit}</span>
-              </div>
-            ))}
-          </div>
 
           <form onSubmit={handleSubmit} className="flex justify-center mb-8">
             <div className="relative">

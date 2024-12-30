@@ -59,7 +59,7 @@ function TourEvent({ tour, index, isLast }) {
           index % 2 === 0
             ? "from-neonPink to-neonBlue"
             : "from-neonBlue to-neonPink"
-        } p-8 rounded-lg shadow-lg w-full md:w-1/2 text-center md:text-left`}
+        } p-8 rounded-lg shadow-lg w-full md:w-1/2 text-center md:text-left ease-in-out`}
         whileHover={{ scale: 1.05 }}
         onHoverStart={() => setIsHovered(true)}
         onHoverEnd={() => setIsHovered(false)}
@@ -67,18 +67,14 @@ function TourEvent({ tour, index, isLast }) {
         <h2 className="text-3xl font-extrabold uppercase tracking-wide">
           {tour.title}
         </h2>
-        <p className="mt-4 text-zinc-300 leading-relaxed">{tour.description}</p>
+        <p className="mt-4 text-zinc-50 leading-relaxed">{tour.description}</p>
         <p className="mt-4 text-neonBlack bg-white inline-block px-4 py-2 rounded-full font-bold text-sm">
           Location: {tour.location}
         </p>
         {isLast && (
-          <motion.button
-            className="mt-6 mx-6 bg-neonPink text-white px-6 py-2 rounded-full font-bold text-lg hover:bg-neonBlue transition-colors duration-300"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-          >
+          <button className="mt-6 mx-6 bg-neonPink text-white px-6 py-2 rounded-full font-bold text-lg hover:bg-neonBlue hover:scale-105 ease-in-out duration-300">
             Buy Tickets Now
-          </motion.button>
+          </button>
         )}
       </motion.div>
 
@@ -125,7 +121,7 @@ function Tours() {
       title: "Back to the Stage",
       description:
         "The ultimate reunion tour celebrating our history and bringing fans together worldwide.",
-      location: "Global",
+      location: "USA",
     },
     {
       year: "2025",
@@ -147,7 +143,7 @@ function Tours() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-6xl font-extrabold text-neonPink uppercase">
+          <h1 className="text-6xl font-extrabold text-white uppercase">
             Rock Band Tours
           </h1>
           <p className="mt-4 text-lg text-neonBlue italic">

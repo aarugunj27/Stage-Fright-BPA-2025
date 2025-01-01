@@ -8,50 +8,16 @@ import RockBackgroundAnimation from "../components/RockBackgroundAnimation";
 function ComingSoon() {
   const [email, setEmail] = useState("");
   const [launchDate, setLaunchDate] = useState(null);
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
 
   useEffect(() => {
     const now = new Date();
     const randomFuture = new Date(
-      now.getFullYear() + Math.floor(Math.random() * 2 + 1), // Random year within 1-2 years
-      Math.floor(Math.random() * 12), // Random month (0-11)
-      Math.floor(Math.random() * 28) + 1 // Random day (1-28 to avoid invalid dates)
+      now.getFullYear() + Math.floor(Math.random() * 2 + 1),
+      Math.floor(Math.random() * 12),
+      Math.floor(Math.random() * 28) + 1
     );
     setLaunchDate(randomFuture);
   }, []);
-
-  useEffect(() => {
-    if (!launchDate) return;
-
-    const timer = setInterval(() => {
-      const now = new Date().getTime();
-      const difference = launchDate.getTime() - now;
-
-      setTimeLeft({
-        days: Math.max(Math.floor(difference / (1000 * 60 * 60 * 24)), 0),
-        hours: Math.max(
-          Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-          0
-        ),
-        minutes: Math.max(
-          Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
-          0
-        ),
-        seconds: Math.max(Math.floor((difference % (1000 * 60)) / 1000), 0),
-      });
-
-      if (difference <= 0) {
-        clearInterval(timer);
-      }
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [launchDate]);
 
   const navigate = useNavigate();
   const handleSubmit = (e) => {

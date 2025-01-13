@@ -7,6 +7,8 @@ import Contact from "./pages/contact.js";
 import PageNotFound from "./pages/404.js";
 import Music from "./pages/music.js";
 import ComingSoon from "./pages/comingsoon.js";
+import FAQ from "./pages/faq.js";
+import PrivacyPolicy from "./pages/privacy.js";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/music" element={<Music />} />
         <Route path="/soon" element={<ComingSoon />} />
+        <Route path="/faq" element={<FAQ />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </>

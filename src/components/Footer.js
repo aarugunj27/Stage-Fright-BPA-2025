@@ -24,7 +24,7 @@ function Footer() {
                 Stage Fright
               </h3>
             </div>
-            <p className="text-sm mb-4">
+            <p className="text-sm mb-4 text-zinc-100">
               Electrifying performances, unforgettable experiences.
             </p>
           </div>
@@ -32,7 +32,7 @@ function Footer() {
           {/* Navigation Links */}
           {linkSections.map((section, index) => (
             <div key={index}>
-              <h4 className="text-lg font-semibold mb-4 text-zinc-100">
+              <h4 className="text-lg font-semibold mb-4 text-white">
                 {section.title}
               </h4>
               <ul className="space-y-2">
@@ -44,7 +44,7 @@ function Footer() {
                           ? "/"
                           : `/${item.toLowerCase().replace(" ", "-")}`
                       }
-                      className="text-sm font-medium hover:text-neonPink transition-colors duration-300"
+                      className="text-sm font-medium text-zinc-100 hover:text-neonPink transition-colors duration-300"
                     >
                       {item}
                     </a>

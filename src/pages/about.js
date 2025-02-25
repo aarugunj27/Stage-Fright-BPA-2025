@@ -110,7 +110,7 @@ function About() {
     { icon: Users, label: "Fans Worldwide", value: 500000 },
     { icon: Music, label: "Albums Released", value: 4 },
     { icon: Trophy, label: "Music Awards", value: 12 },
-    { icon: Mic, label: "Live Shows", value: 1000 },
+    { icon: Mic, label: "Live Shows", value: 50 },
   ];
 
   return (

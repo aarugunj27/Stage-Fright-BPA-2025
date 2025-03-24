@@ -108,7 +108,7 @@ function About() {
 
   const stats = [
     { icon: Users, label: "Fans Worldwide", value: 500000 },
-    { icon: Music, label: "Albums Released", value: 4 },
+    { icon: Music, label: "Albums Released", value: 3 },
     { icon: Trophy, label: "Music Awards", value: 12 },
     { icon: Mic, label: "Live Shows", value: 50 },
   ];

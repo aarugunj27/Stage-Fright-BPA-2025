@@ -200,18 +200,18 @@ function LatestRelease() {
 function UpcomingTours() {
   const tours = [
     {
-      date: "July 15, 2024",
+      date: "July 15, 2025",
       venue: "Rockstar Arena, New York",
       ticketsLeft: 500,
     },
     {
-      date: "July 22, 2024",
-      venue: "Melody Hall, Los Angeles",
+      date: "July 22, 2025",
+      venue: "Sydney Opera House, Sydney",
       ticketsLeft: 250,
     },
     {
-      date: "August 5, 2024",
-      venue: "Harmony Stadium, Chicago",
+      date: "August 5, 2025",
+      venue: "Colosseum, Rome",
       ticketsLeft: 1000,
     },
   ];
@@ -245,7 +245,7 @@ function UpcomingTours() {
     <section ref={sectionRef} className="relative py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
         <h2 className="text-5xl font-bold text-white mb-8 text-center">
-          Upcoming Tours
+          Upcoming Concerts
         </h2>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {tours.map((tour, index) => (

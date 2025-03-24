@@ -11,18 +11,6 @@ const ComingSoon = () => {
   const cartItems = [
     {
       id: 1,
-      title: "Band T-Shirt",
-      price: 29.99,
-      img: TourT,
-    },
-    {
-      id: 2,
-      title: "Tour Poster",
-      price: 14.99,
-      img: Poster,
-    },
-    {
-      id: 3,
       title: "Neon Nights Album",
       price: 19.99,
       img: Album,

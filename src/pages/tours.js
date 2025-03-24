@@ -111,7 +111,7 @@ function Tours() {
     },
     {
       year: "2020",
-      title: "Neon Nights Tour",
+      title: "Dark Days Tour",
       description:
         "A roaring success with sold-out arenas. Bigger, louder, and more electrifying.",
       location: "North America & Europe",

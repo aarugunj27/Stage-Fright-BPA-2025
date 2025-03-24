@@ -116,7 +116,7 @@ export default function Music() {
     },
     {
       title: "Debut Daze",
-      year: 2020,
+      year: 2017,
       cover: Daze,
       tracks: [
         { title: "First Light", duration: "3:22" },
